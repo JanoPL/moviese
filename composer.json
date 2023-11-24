@@ -10,6 +10,7 @@
         "doctrine/doctrine-bundle": "^2.11",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.17",
+        "janopl/recommendation-system": "dev-master",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",
         "symfony/flex": "^2",
@@ -20,8 +21,7 @@
         "symfony/validator": "6.3.*",
         "symfony/yaml": "6.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0",
-        "janopl/recommendation-system": "dev-master"
+        "twig/twig": "^2.12|^3.0"
     },
     "config": {
         "allow-plugins": {
