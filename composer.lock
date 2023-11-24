@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "34b8c1aadf4c987ed664d3a41d450dbe",
+    "content-hash": "66670bc54b46bd29900e3535e581d2c5",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1328,6 +1328,47 @@
                 "source": "https://github.com/doctrine/sql-formatter/tree/1.1.3"
             },
             "time": "2022-05-23T21:33:49+00:00"
+        },
+        {
+            "name": "janopl/recommendation-system",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:JanoPL/recommendation-system.git",
+                "reference": "9269058d553b5726fbc1492c1a6c3d23a4d8874e"
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "ext-xdebug": "^3.1",
+                "phpunit/phpunit": "^10.0",
+                "symfony/var-dumper": "^6.3"
+            },
+            "default-branch": true,
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Recommendations\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Recommendations\\Tests\\": "tests/",
+                    "Recommendations\\Tests\\Data\\": "tests/data/"
+                }
+            },
+            "scripts": {
+                "tests": [
+                    "vendor/bin/phpunit tests"
+                ]
+            },
+            "license": [
+                "apache-2.0"
+            ],
+            "description": "Recommendation system",
+            "time": "2023-11-23T14:10:50+00:00"
         },
         {
             "name": "psr/cache",
@@ -6998,7 +7039,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "janopl/recommendation-system": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
