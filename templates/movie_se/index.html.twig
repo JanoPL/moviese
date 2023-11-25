@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EntertainmentProduct index{% endblock %}
+
+{% block body %}
+    <h1>EntertainmentProduct index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entertainment_product in entertainment_products %}
+            <tr>
+                <td>{{ entertainment_product.id }}</td>
+                <td>
+                    <a href="{{ path('app_movie_se_show', {'id': entertaiment_product.id}) }}">show</a>
+                    <a href="{{ path('app_movie_se_edit', {'id': entertaiment_product.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_movie_se_new') }}">Create new</a>
+{% endblock %}
