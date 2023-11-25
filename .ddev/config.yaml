@@ -12,6 +12,7 @@ database:
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
+host_db_port: "55898"
 
 # Key features of DDEV's config.yaml:
 
@@ -155,7 +156,7 @@ web_environment: []
 # This is not used by most people, most people use the *router* instead
 # of the localhost port.
 
-# host_db_port: "59002"
+# host_db_port: "55898"
 # The host port binding for the ddev-dbserver can be explicitly specified. It is dynamic
 # unless explicitly specified.
 
@@ -206,7 +207,7 @@ web_environment: []
 # For advanced users only!
 
 # bind_all_interfaces: false
-# If true, host ports will be bound on all network interfaces,
+# If true, host ports will be bound on all network Interfaces,
 # not the localhost interface only. This means that ports
 # will be available on the local network if the host firewall
 # allows it.
@@ -269,3 +270,8 @@ web_environment: []
 # information on the commands that can be extended and the tasks you can define
 # for them. Example:
 #hooks:
+
+hooks:
+    post-start:
+        - exec: mysql -uroot -proot -hdb -e "CREATE DATABASE IF NOT EXISTS second_db; GRANT
+              ALL ON db_test.* TO 'db'@'%';"
