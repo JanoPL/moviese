@@ -124,8 +124,13 @@ class EntertainmentProductController extends AbstractController
 
         $results = $this->entertainmentProductRepository->findAll();
 
-        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
-            $filter = $filterForm->getData()['filter']->name;
+
+        if (
+            !empty($results)
+            && $filterForm->isSubmitted()
+            && $filterForm->isValid()
+        ) {
+            $filter = $filterForm->getData()['filter']?->name;
 
             switch ($filter) {
                 case StrategyEnum::Even->name:
