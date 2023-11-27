@@ -39,6 +39,7 @@ class AddSeasonNumberListener implements EventSubscriberInterface
                 IntegerType::class,
                 [
                     'label' => "Season numbers",
+                    'required' => true
                 ]
             );
         }

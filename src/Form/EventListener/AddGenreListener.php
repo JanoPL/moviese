@@ -32,6 +32,7 @@ class AddGenreListener implements EventSubscriberInterface
                 TextType::class,
                 [
                     'label' => "Genre",
+                    'required' => true,
                 ]
             );
         }

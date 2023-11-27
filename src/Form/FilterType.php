@@ -18,7 +18,7 @@ class FilterType extends AbstractType
                 EnumType::class,
                 [
                     'class' => StrategyEnum::class,
-                    'empty_data' => StrategyEnum::All
+                    'required' => false,
                 ]
             )
         ;
