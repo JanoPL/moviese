@@ -10,9 +10,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class EntertainmentProductType extends AbstractType
 {
+    public function __construct(private readonly NameTransformer $transformer) {
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -34,6 +37,7 @@ class EntertainmentProductType extends AbstractType
             ])
             ->addEventSubscriber(new AddSeasonNumberListener())
             ->addEventSubscriber(new AddGenreListener())
+            ->addModelTransformer($this->transformer)
         ;
     }
 
