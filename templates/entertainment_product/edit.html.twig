@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit EntertainmentProduct{% endblock %}
+
+{% block body %}
+    <h1>Edit EntertainmentProduct</h1>
+
+    {{ include('entertainment_product/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <div class="row">
+        <div class="col-2 pt-2">
+            <a class="btn btn-dark" href="{{ path('app_entertainment_product_index') }}">back to list</a>
+        </div>
+
+        <div class="col-2 pt-2">
+            {{ include('entertainment_product/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

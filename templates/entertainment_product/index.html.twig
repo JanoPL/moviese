@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EntertainmentProduct index{% endblock %}
+
+{% block body %}
+    <h1>EntertainmentProduct index</h1>
+
+    {{ include('entertainment_product/_filter_form.html.twig', {'button_label': 'Filter'}) }}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entertainment_product in entertainment_products %}
+            <tr>
+                <td>{{ entertainment_product.id }}</td>
+                <td>{{ entertainment_product.name }}</td>
+                <td>{{ entertainment_product.type }}</td>
+                <td>
+                    <a href="{{ path('app_entertainment_product_show', {'id': entertainment_product.id}) }}">show</a>
+                    <a href="{{ path('app_entertainment_product_edit', {'id': entertainment_product.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-success" href="{{ path('app_entertainment_product_new') }}">Create new</a>
+{% endblock %}

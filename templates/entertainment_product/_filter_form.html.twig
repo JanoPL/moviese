@@ -1,0 +1,13 @@
+<div class="form-control">
+{{ form_start(filterForm, {'action': path('app_entertainment_product_filter'), 'method': 'POST'}) }}
+<div class="form-group">
+    <div class="row pt-2">
+        <div class="col-1 pt-1">
+            <button class="btn btn-sm btn-primary">{{ button_label|default('filter') }}</button>
+        </div>
+        <div class="col-2 pt-1">
+            {{ form_widget(filterForm.filter) }}
+        </div>
+    </div>
+{{ form_end(filterForm) }}
+</div>

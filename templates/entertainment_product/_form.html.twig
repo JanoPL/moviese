@@ -1,0 +1,32 @@
+<div class="form-control">
+    {{ form_start(form) }}
+
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        <label class="col-2 pt-2">{{ form_label(form.name) }}</label>
+        {{ form_widget(form.name) }}
+    </div>
+
+    <div class="form-group">
+        <label class="col-2 pt-2">{{ form_label(form.type) }}</label>
+        {{ form_widget(form.type) }}
+    </div>
+
+    {% if(form.genre is defined) %}
+        <div class="form-group">
+            <label class="col-2 pt-2">{{ form_label(form.genre) }}</label>
+            {{ form_widget(form.genre) }}
+        </div>
+    {% endif %}
+
+    {% if(form.season_number is defined) %}
+    <div class="form-group">
+        <label class="col-2 pt-2">{{ form_label(form.season_number) }}</label>
+        {{ form_widget(form.season_number) }}
+    </div>
+    {% endif %}
+
+        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>

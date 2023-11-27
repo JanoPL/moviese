@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EntertainmentProduct{% endblock %}
+
+{% block body %}
+    <h1>EntertainmentProduct</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entertainment_product.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entertainment_product.name }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ entertainment_product.type }}</td>
+            </tr>
+            {% if entertainment_product.seasonNumber is defined %}
+            <tr>
+                <th>Season Number</th>
+                <td>{{ entertainment_product.seasonNumber }}</td>
+            </tr>
+            {% endif %}
+            {% if entertainment_product.genre is defined %}
+                <tr>
+                    <th>Genre</th>
+                    <td>{{ entertainment_product.genre }}</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-2 pt-2">
+            <a class="btn btn-dark" href="{{ path('app_entertainment_product_index') }}">back to list</a>
+        </div>
+
+        <div class="col-2 pt-2">
+            <a class="btn btn-info" href="{{ path('app_entertainment_product_edit', {'id': entertainment_product.id}) }}">edit</a>
+        </div>
+
+        <div class="col-2 pt-2">
+            {{ include('entertainment_product/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}
