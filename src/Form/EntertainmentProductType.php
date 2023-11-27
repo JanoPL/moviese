@@ -3,10 +3,13 @@
 namespace App\Form;
 
 use App\Entity\EntertainmentProduct;
+use App\Form\EventListener\AddGenreListener;
+use App\Form\EventListener\AddPreSetDataListener;
+use App\Form\EventListener\AddSeasonNumberListener;
+use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,42 +19,22 @@ class EntertainmentProductType extends AbstractType
     {
         $builder
             ->add(
-                "Name",
+                "name",
                 TextType::class,
                 [
                     'required' => false
                 ]
             )
-            ->add("filter", ChoiceType::class, [
-                'label' => "Filter",
-                'required' => true,
-                "choices" => call_user_func(function () {
-
-                })
-            ])
             ->add("type", ChoiceType::class, [
                 'label' => "Type",
                 'required' => false,
                 'choices' => [
-                    "Movie" => 'Test1',
-                    "Series" => 'test2',
+                    "Movie" => 'movie',
+                    "Series" => 'series',
                 ],
-                'attr' => [
-                    'data-hide-show-me' => true,
-                ]
             ])
-            ->add(
-                "season_number",
-                IntegerType::class,
-                [
-                    'label' => "Season numbers",
-                    'attr' => [
-                        'data-hide-show-me' => true,
-                        'class' => 'hidden-class'
-                    ]
-                ]
-            )
-            ->addModelTransformer(new SeriesTransformer())
+            ->addEventSubscriber(new AddSeasonNumberListener())
+            ->addEventSubscriber(new AddGenreListener())
         ;
     }
 
@@ -59,6 +42,14 @@ class EntertainmentProductType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => EntertainmentProduct::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',
+            'csrf_token_id' => 'task_item'
         ]);
+    }
+
+    public function getParent()
+    {
+        return parent::getParent();
     }
 }
