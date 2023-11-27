@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\EntertaimentProductRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\EntertainmentProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: EntertaimentProductRepository::class)]
+#[
+    ORM\Entity(repositoryClass: EntertainmentProductRepository::class),
+    ORM\InheritanceType("SINGLE_TABLE"),
+    ORM\DiscriminatorMap(["movie" => Movie::class, 'series' => Series::class]),
+    ORM\DiscriminatorColumn(name: 'discr', type: 'string')
+]
 class EntertainmentProduct
 {
     #[ORM\Id]
@@ -15,67 +18,37 @@ class EntertainmentProduct
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Movie::class, inversedBy: 'entertaimentProducts')]
-    private Collection $movies;
+    #[ORM\Column(length: 128)]
+    private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Series::class, inversedBy: 'entertaimentProducts')]
-    private Collection $Series;
-
-    public function __construct()
-    {
-        $this->movies = new ArrayCollection();
-        $this->Series = new ArrayCollection();
-    }
+    #[ORM\Column(length: 25, nullable: true)]
+    private ?string $type = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Movie>
-     */
-    public function getMovies(): Collection
+    public function getName(): ?string
     {
-        return $this->movies;
+        return $this->name;
     }
 
-    public function addMovie(Movie $movie): static
+    public function setName(string $name): static
     {
-        if (!$this->movies->contains($movie)) {
-            $this->movies->add($movie);
-        }
+        $this->name = $name;
 
         return $this;
     }
 
-    public function removeMovie(Movie $movie): static
+    public function getType(): ?string
     {
-        $this->movies->removeElement($movie);
-
-        return $this;
+        return $this->type;
     }
 
-    /**
-     * @return Collection<int, Series>
-     */
-    public function getSeries(): Collection
+    public function setType(?string $type): static
     {
-        return $this->Series;
-    }
-
-    public function addSeries(Series $series): static
-    {
-        if (!$this->Series->contains($series)) {
-            $this->Series->add($series);
-        }
-
-        return $this;
-    }
-
-    public function removeSeries(Series $series): static
-    {
-        $this->Series->removeElement($series);
+        $this->type = $type;
 
         return $this;
     }
