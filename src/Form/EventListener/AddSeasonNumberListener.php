@@ -2,7 +2,6 @@
 
 namespace App\Form\EventListener;
 
-use App\Form\MoviesType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormEvent;
