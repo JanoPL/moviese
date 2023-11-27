@@ -1335,7 +1335,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:JanoPL/recommendation-system.git",
-                "reference": "9269058d553b5726fbc1492c1a6c3d23a4d8874e"
+                "reference": "67ea0dcdcd769898debd36e4b3c839ad92454657"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -1368,7 +1368,7 @@
                 "apache-2.0"
             ],
             "description": "Recommendation system",
-            "time": "2023-11-23T14:10:50+00:00"
+            "time": "2023-11-27T18:46:02+00:00"
         },
         {
             "name": "psr/cache",
