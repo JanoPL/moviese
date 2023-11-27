@@ -42,3 +42,16 @@ Number of suggestions: 11
 - Name: Star Trek, type: movie, 
 - Name: Star Trek, type: series,
 - etc (…)
+
+## Build and run
+ 
+1. clone ```git clone git@github.com:JanoPL/moviese.git```
+2. cd moviese
+3. Configure .env from .env.example
+4. generate app key ```php ./bin/console secrets:generate-keys```
+5. Install dependencies ```composer install```
+6. Install and build npm/yarn dependecies ```npm install && npm run build``` or ```yarn install && yarn build```
+7. cd .docker
+8. Run docker compose ```docker compose up -d```
+9. execute migrations ``` docker compose exec php /bin/bash```  after entered container shell, execute ```./bin/console doctrine:migrations:migrate```
+10. Open URL http://localhost:80 and see if everything it's working fine 
