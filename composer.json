@@ -1,6 +1,6 @@
 {
     "type": "project",
-    "license": "proprietary",
+    "license": "apache-2.0",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
