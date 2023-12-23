@@ -3,3 +3,12 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+api:
+    resource:
+        path: ../src/Controller/Rest
+        namespace: App\Controller\Rest
+    type: attribute
+    name_prefix: 'api_'
+    prefix: '/api/v1'
+
