@@ -13,18 +13,23 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 
 class EntertainmentProductController extends AbstractController
 {
     private EntertainmentProductRepository $entertainmentProductRepository;
+    private CacheInterface $cache;
     private $serializer;
 
     public function __construct(
         EntertainmentProductRepository $entertainmentProductRepository,
-        RecommendationSystemInterface $recommendationSystem
+        RecommendationSystemInterface $recommendationSystem,
+        CacheInterface $cache
     ) {
         $this->entertainmentProductRepository = $entertainmentProductRepository;
+        $this->cache = $cache;
 
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
@@ -35,14 +40,15 @@ class EntertainmentProductController extends AbstractController
     #[Route('/entertainmentProduct', methods: ['GET'])]
     public function index() : Response
     {
-        $products = $this->entertainmentProductRepository->findAll();
+        $json_content = $this->cache->get('entertainmentProduct_cache', function (ItemInterface $item) {
+            $item->expiresAfter(30);
+            $products = $this->entertainmentProductRepository->findAll();
 
-        $outputJsonDto = new OutputJsonDto();
-        $outputJsonDto->setData($products);
+            $outputJsonDto = new OutputJsonDto();
+            $outputJsonDto->setData($products);
 
-
-
-        $json_content = $this->serializer->serialize($outputJsonDto, 'json');
+            return $this->serializer->serialize($outputJsonDto, 'json');
+        });
 
         return new JsonResponse(
             data: $json_content,
