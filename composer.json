@@ -13,7 +13,7 @@
         "google/cloud": "^0.195.0",
         "janopl/recommendation-system": "dev-master",
         "sensio/framework-extra-bundle": "^6.2",
-        "symfony-bundles/redis-bundle": "^3.1",
+        "symfony-bundles/redis-bundle": "*",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",
         "symfony/flex": "^2",
